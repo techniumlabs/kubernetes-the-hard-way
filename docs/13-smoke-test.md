@@ -32,17 +32,25 @@ gcloud compute ssh controller-0 \
 00000010  73 2f 64 65 66 61 75 6c  74 2f 6b 75 62 65 72 6e  |s/default/kubern|
 00000020  65 74 65 73 2d 74 68 65  2d 68 61 72 64 2d 77 61  |etes-the-hard-wa|
 00000030  79 0a 6b 38 73 3a 65 6e  63 3a 61 65 73 63 62 63  |y.k8s:enc:aescbc|
-00000040  3a 76 31 3a 6b 65 79 31  3a 44 ac 6e ac 11 2f 28  |:v1:key1:D.n../(|
-00000050  02 46 3d ad 9d cd 68 be  e4 cc 63 ae 13 e4 99 e8  |.F=...h...c.....|
-00000060  6e 55 a0 fd 9d 33 7a b1  17 6b 20 19 23 dc 3e 67  |nU...3z..k .#.>g|
-00000070  c9 6c 47 fa 78 8b 4d 28  cd d1 71 25 e9 29 ec 88  |.lG.x.M(..q%.)..|
-00000080  7f c9 76 b6 31 63 6e ea  ac c5 e4 2f 32 d7 a6 94  |..v.1cn..../2...|
-00000090  3c 3d 97 29 40 5a ee e1  ef d6 b2 17 01 75 a4 a3  |<=.)@Z.......u..|
-000000a0  e2 c2 70 5b 77 1a 0b ec  71 c3 87 7a 1f 68 73 03  |..p[w...q..z.hs.|
-000000b0  67 70 5e ba 5e 65 ff 6f  0c 40 5a f9 2a bd d6 0e  |gp^.^e.o.@Z.*...|
-000000c0  44 8d 62 21 1a 30 4f 43  b8 03 69 52 c0 b7 2e 16  |D.b!.0OC..iR....|
-000000d0  14 a5 91 21 29 fa 6e 03  47 e2 06 25 45 7c 4f 8f  |...!).n.G..%E|O.|
-000000e0  6e bb 9d 3b e9 e5 2d 9e  3e 0a                    |n..;..-.>.|
+00000040  3a 76 31 3a 6b 65 79 31  3a 97 d1 2c cd 89 0d 08  |:v1:key1:..,....|
+00000050  29 3c 7d 19 41 cb ea d7  3d 50 45 88 82 a3 1f 11  |)<}.A...=PE.....|
+00000060  26 cb 43 2e c8 cf 73 7d  34 7e b1 7f 9f 71 d2 51  |&.C...s}4~...q.Q|
+00000070  45 05 16 e9 07 d4 62 af  f8 2e 6d 4a cf c8 e8 75  |E.....b...mJ...u|
+00000080  6b 75 1e b7 64 db 7d 7f  fd f3 96 62 e2 a7 ce 22  |ku..d.}....b..."|
+00000090  2b 2a 82 01 c3 f5 83 ae  12 8b d5 1d 2e e6 a9 90  |+*..............|
+000000a0  bd f0 23 6c 0c 55 e2 52  18 78 fe bf 6d 76 ea 98  |..#l.U.R.x..mv..|
+000000b0  fc 2c 17 36 e3 40 87 15  25 13 be d6 04 88 68 5b  |.,.6.@..%.....h[|
+000000c0  a4 16 81 f6 8e 3b 10 46  cb 2c ba 21 35 0c 5b 49  |.....;.F.,.!5.[I|
+000000d0  e5 27 20 4c b3 8e 6b d0  91 c2 28 f1 cc fa 6a 1b  |.' L..k...(...j.|
+000000e0  31 19 74 e7 a5 66 6a 99  1c 84 c7 e0 b0 fc 32 86  |1.t..fj.......2.|
+000000f0  f3 29 5a a4 1c d5 a4 e3  63 26 90 95 1e 27 d0 14  |.)Z.....c&...'..|
+00000100  94 f0 ac 1a cd 0d b9 4b  ae 32 02 a0 f8 b7 3f 0b  |.......K.2....?.|
+00000110  6f ad 1f 4d 15 8a d6 68  95 63 cf 7d 04 9a 52 71  |o..M...h.c.}..Rq|
+00000120  75 ff 87 6b c5 42 e1 72  27 b5 e9 1a fe e8 c0 3f  |u..k.B.r'......?|
+00000130  d9 04 5e eb 5d 43 0d 90  ce fa 04 a8 4a b0 aa 01  |..^.]C......J...|
+00000140  cf 6d 5b 80 70 5b 99 3c  d6 5c c0 dc d1 f5 52 4a  |.m[.p[.<.\....RJ|
+00000150  2c 2d 28 5a 63 57 8e 4f  df 0a                    |,-(ZcW.O..|
+0000015a
 ```
 
 The etcd key should be prefixed with `k8s:enc:aescbc:v1:key1`, which indicates the `aescbc` provider was used to encrypt the data with the `key1` encryption key.
@@ -66,8 +74,8 @@ kubectl get pods -l app=nginx
 > output
 
 ```
-NAME                     READY   STATUS    RESTARTS   AGE
-nginx-554b9c67f9-vt5rn   1/1     Running   0          10s
+NAME                    READY   STATUS    RESTARTS   AGE
+nginx-f89759699-kpn5m   1/1     Running   0          10s
 ```
 
 ### Port Forwarding
@@ -103,13 +111,13 @@ curl --head http://127.0.0.1:8080
 
 ```
 HTTP/1.1 200 OK
-Server: nginx/1.17.3
-Date: Sat, 14 Sep 2019 21:10:11 GMT
+Server: nginx/1.19.10
+Date: Sun, 02 May 2021 05:29:25 GMT
 Content-Type: text/html
 Content-Length: 612
-Last-Modified: Tue, 13 Aug 2019 08:50:00 GMT
+Last-Modified: Tue, 13 Apr 2021 15:13:59 GMT
 Connection: keep-alive
-ETag: "5d5279b8-264"
+ETag: "6075b537-264"
 Accept-Ranges: bytes
 ```
 
@@ -135,7 +143,8 @@ kubectl logs $POD_NAME
 > output
 
 ```
-127.0.0.1 - - [14/Sep/2019:21:10:11 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.52.1" "-"
+...
+127.0.0.1 - - [02/May/2021:05:29:25 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.64.0" "-"
 ```
 
 ### Exec
@@ -151,7 +160,7 @@ kubectl exec -ti $POD_NAME -- nginx -v
 > output
 
 ```
-nginx version: nginx/1.17.3
+nginx version: nginx/1.19.10
 ```
 
 ## Services
@@ -198,13 +207,13 @@ curl -I http://${EXTERNAL_IP}:${NODE_PORT}
 
 ```
 HTTP/1.1 200 OK
-Server: nginx/1.17.3
-Date: Sat, 14 Sep 2019 21:12:35 GMT
+Server: nginx/1.19.10
+Date: Sun, 02 May 2021 05:31:52 GMT
 Content-Type: text/html
 Content-Length: 612
-Last-Modified: Tue, 13 Aug 2019 08:50:00 GMT
+Last-Modified: Tue, 13 Apr 2021 15:13:59 GMT
 Connection: keep-alive
-ETag: "5d5279b8-264"
+ETag: "6075b537-264"
 Accept-Ranges: bytes
 ```
 
